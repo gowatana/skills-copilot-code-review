@@ -23,6 +23,9 @@
           </button>
           <div id="user-info" class="hidden">
             <span id="display-name"></span>
+            <button id="manage-announcements-button" class="icon-button hidden" type="button">
+              <span>Announcements</span>
+            </button>
             <button id="logout-button">Logout</button>
           </div>
         </div>
@@ -30,6 +33,16 @@
     </header>
 
     <main>
+      <section id="announcements-section" class="announcements-panel">
+        <div class="announcements-panel-header">
+          <h3>School Announcements</h3>
+          <p>Stay up to date with time-sensitive school news.</p>
+        </div>
+        <div id="announcements-list" class="announcements-list">
+          <p>Loading announcements...</p>
+        </div>
+      </section>
+
       <section id="activities-container">
         <div class="main-content-layout">
           <!-- Left Sidebar for Filters -->
@@ -101,7 +114,7 @@
     <!-- Registration Modal -->
     <div id="registration-modal" class="modal hidden">
       <div class="modal-content">
-        <span class="close-modal">&times;</span>
+        <button class="close-modal" type="button" aria-label="Close registration dialog">&times;</button>
         <h3>Register for <span id="modal-activity-name"></span></h3>
         <form id="signup-form">
           <div class="form-group">
@@ -117,7 +130,7 @@
     <!-- Login Modal -->
     <div id="login-modal" class="modal hidden">
       <div class="modal-content">
-        <span class="close-login-modal">&times;</span>
+        <button class="close-login-modal" type="button" aria-label="Close login dialog">&times;</button>
         <h3>Teacher Login</h3>
         <form id="login-form">
           <div class="form-group">
@@ -131,6 +144,69 @@
           <button type="submit">Login</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <!-- Announcement Management Modal -->
+    <div id="announcements-modal" class="modal hidden">
+      <div class="modal-content announcements-modal-content">
+        <button
+          id="close-announcements-modal"
+          class="close-login-modal"
+          type="button"
+          aria-label="Close announcements manager"
+        >
+          &times;
+        </button>
+        <h3>Manage Announcements</h3>
+        <p class="announcement-manage-subtitle">Create, edit, and remove school notices.</p>
+
+        <form id="announcement-form" class="announcement-form">
+          <input type="hidden" id="announcement-id" />
+          <div class="form-group">
+            <label for="announcement-title">Title</label>
+            <input
+              type="text"
+              id="announcement-title"
+              maxlength="120"
+              required
+              placeholder="e.g. Club Fair Schedule Update"
+            />
+          </div>
+          <div class="form-group">
+            <label for="announcement-message">Message</label>
+            <textarea
+              id="announcement-message"
+              rows="3"
+              maxlength="500"
+              required
+              placeholder="Share details students should know"
+            ></textarea>
+          </div>
+          <div class="announcement-date-row">
+            <div class="form-group">
+              <label for="announcement-start-date">Start Date (Optional)</label>
+              <input type="date" id="announcement-start-date" />
+            </div>
+            <div class="form-group">
+              <label for="announcement-expiration-date">Expiration Date</label>
+              <input type="date" id="announcement-expiration-date" required />
+            </div>
+          </div>
+          <div class="announcement-form-actions">
+            <button type="submit" id="save-announcement-button">Save Announcement</button>
+            <button type="button" id="reset-announcement-form" class="secondary-button">Clear</button>
+          </div>
+        </form>
+
+        <div id="announcements-manage-message" class="hidden message"></div>
+
+        <div class="announcement-list-wrapper">
+          <h4>Existing Announcements</h4>
+          <div id="announcements-admin-list" class="announcements-admin-list">
+            <p>Loading announcements...</p>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -1,25 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600&display=swap");
+
 /* Color palette */
 :root {
   /* Primary colors */
-  --primary: #1a237e;
-  --primary-light: #534bae;
-  --primary-dark: #000051;
+  --primary: #0c4a6e;
+  --primary-light: #0f766e;
+  --primary-dark: #083344;
   --primary-text: #ffffff;
 
   /* Secondary colors */
-  --secondary: #ff6f00;
-  --secondary-light: #ffa040;
-  --secondary-dark: #c43e00;
+  --secondary: #c2410c;
+  --secondary-light: #ea580c;
+  --secondary-dark: #9a3412;
   --secondary-text: #ffffff;
 
   /* Neutral colors */
-  --background: #f5f5f5;
+  --background: #f4f8f7;
   --surface: #ffffff;
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --border: #e0e0e0;
-  --border-light: #f0f0f0;
-  --border-focus: #d0d0d0;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --border: #d9e3e8;
+  --border-light: #ebf1f4;
+  --border-focus: #8ab6c9;
 
   /* Feedback colors */
   --success: #2e7d32;
@@ -36,17 +38,18 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   line-height: 1.4;
   color: var(--text-primary);
   max-width: 1200px;
   margin: 0 auto;
   padding: 12px;
-  background-color: var(--background);
+  background: radial-gradient(circle at 10% 10%, #e8f7fb 0%, var(--background) 55%),
+    linear-gradient(180deg, #f8fcfb 0%, var(--background) 100%);
   font-size: 0.9rem;
 }
 
@@ -67,6 +70,8 @@ header {
 header h1 {
   margin-bottom: 5px;
   font-size: 1.6rem;
+  font-family: "Fraunces", Georgia, serif;
+  letter-spacing: 0.4px;
 }
 
 header h2 {
@@ -82,9 +87,88 @@ main {
 section {
   background-color: var(--surface);
   padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.08);
   width: 100%;
+}
+
+.announcements-panel {
+  margin-bottom: 14px;
+  border: 1px solid #d8e8ed;
+  background: linear-gradient(135deg, #f3fbff 0%, #ffffff 55%, #f4fbf7 100%);
+}
+
+.announcements-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.announcements-panel-header h3 {
+  margin: 0;
+  border: none;
+  padding-bottom: 0;
+}
+
+.announcements-panel-header p {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+
+.announcements-list {
+  display: grid;
+  gap: 10px;
+}
+
+.announcement-item {
+  border: 1px solid #dcebf0;
+  border-left: 4px solid #0f766e;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #ffffff;
+  box-shadow: 0 3px 8px rgba(12, 74, 110, 0.07);
+}
+
+.announcement-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.announcement-title-row h4 {
+  margin: 0;
+  color: #0b3f56;
+  font-size: 0.94rem;
+}
+
+.announcement-expiry,
+.announcement-meta {
+  color: #5e7490;
+  font-size: 0.74rem;
+}
+
+.announcement-item p {
+  margin: 0;
+  color: #1f2937;
+}
+
+.announcement-meta {
+  margin-top: 6px;
+}
+
+.announcement-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #41505e;
+  padding: 10px;
+  background: #fbfdff;
+  border: 1px dashed #c4d8e4;
+  border-radius: 8px;
 }
 
 section h3 {
@@ -418,7 +502,7 @@ button {
 .modal-content {
   background-color: var(--surface);
   padding: 18px;
-  border-radius: 5px;
+  border-radius: 14px;
   width: 90%;
   max-width: 350px;
   position: relative;
@@ -441,6 +525,126 @@ button {
   cursor: pointer;
   color: var(--text-secondary);
   line-height: 1;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.announcements-modal-content {
+  max-width: 760px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.announcement-manage-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.announcement-form {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #f8fcff;
+}
+
+.announcement-form textarea,
+.announcement-form input[type="text"],
+.announcement-form input[type="date"] {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.announcement-form textarea:focus,
+.announcement-form input[type="text"]:focus,
+.announcement-form input[type="date"]:focus {
+  outline: none;
+  border-color: #59a7bf;
+  box-shadow: 0 0 0 2px rgba(89, 167, 191, 0.12);
+}
+
+.announcement-date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.announcement-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.announcement-list-wrapper h4 {
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.announcements-admin-list {
+  display: grid;
+  gap: 8px;
+}
+
+.announcement-admin-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  background: #fff;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.announcement-admin-main {
+  flex: 1;
+}
+
+.announcement-admin-main h5 {
+  margin: 0 0 4px;
+  color: #154960;
+}
+
+.announcement-admin-main p {
+  margin: 0;
+}
+
+.announcement-admin-dates {
+  margin-top: 6px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+}
+
+.announcement-admin-actions {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.secondary-button {
+  background: #e6ecf2;
+  color: #1f2937;
+}
+
+.secondary-button:hover {
+  background: #d9e4ed;
+}
+
+.danger-button {
+  background: #b91c1c;
+  color: #fff;
+}
+
+.danger-button:hover {
+  background: #991b1b;
 }
 
 /* Login modal specific styling */
@@ -628,6 +832,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 #display-name {
@@ -663,4 +868,19 @@ footer {
 
 #logout-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 767px) {
+  .announcement-date-row {
+    grid-template-columns: 1fr;
+  }
+
+  .announcement-admin-card {
+    flex-direction: column;
+  }
+
+  #user-controls {
+    position: static;
+    margin-top: 10px;
+  }
 }
